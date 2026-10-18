@@ -35,3 +35,6 @@
 .shop-product-card .product-art.has-shop-image .favorite.selected img{filter:invert(38%) sepia(98%) saturate(2091%) hue-rotate(344deg) brightness(104%)}
 .shop-product-card .product-art.has-shop-image .product-badge{z-index:3;background:#c1ff12;color:#1a1818}
 .shop-product-card .product-art.has-shop-image .product-badge.sold{background:#1a1818;color:#fff}
+.vinyl-page .shop-product-card .product-art.has-shop-image .favorite{top:8px;right:6px;width:40px;height:40px}
+.vinyl-page .shop-product-card .product-art.has-shop-image .product-badge.sold{top:10px;left:10px;padding:6px 9px}
+.vinyl-page .collection-hero-image{max-height:349px;mix-blend-mode:normal}
