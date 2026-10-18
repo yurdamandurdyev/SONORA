@@ -58,3 +58,24 @@
 @media(max-width:900px){.article-card{aspect-ratio:334/382}.spotlight-card{min-height:406px}}
 @media(max-width:900px){.hero-copy{padding-top:70px}.hero-art{margin-top:0;min-height:0;height:auto}}
 @media(max-width:640px){.hero-art{background-size:cover!important}#formats{min-height:0}#formats .section-heading,.section-products .section-heading,.editorial .section-heading,.spotlight .section-heading{height:auto;background:none}#formats .section-heading>*,.section-products .section-heading>*,.editorial .section-heading>*,.spotlight .section-heading>*{opacity:1}.article-grid{grid-template-columns:1fr}.article-card{aspect-ratio:334/382}.spotlight-card{min-height:406px}}
+
+/* Keep type and controls vector-sharp instead of enlarging small Figma PNG text. */
+.hero h1{width:auto;aspect-ratio:auto;background:none;font-size:clamp(76px,9vw,101.61px)!important;line-height:.9!important;letter-spacing:-.04em;margin:43px 0 35px}
+.hero h1 em{font-size:inherit!important;font-weight:900;color:#0b4aff}
+.hero-art{background-image:image-set(url('/home/hero-art.png') 1x,url('/home/hero-art-hires.png') 2x)!important}
+#formats .section-heading,.section-products .section-heading,.editorial .section-heading,.spotlight .section-heading{height:auto;background:none}
+#formats .section-heading>*,.section-products .section-heading>*,.editorial .section-heading>*,.spotlight .section-heading>*{opacity:1}
+#formats .section-heading .eyebrow,.section-products .section-heading .eyebrow{display:none}
+.section-heading h2{font-family:'Fraunces Variable',Georgia,serif;font-weight:800;letter-spacing:-.055em}
+.hero .button{height:50px;min-height:50px;min-width:0;padding:0 20px;gap:5px;font-family:'Instrument Sans Variable',Arial,sans-serif;font-weight:700;font-size:13px;letter-spacing:.015em;border-radius:0}
+.hero .button:first-child{width:166px}
+.hero .button:nth-child(2){width:177px}
+.hero .button-row{gap:12px;margin-top:43px}
+.hero .button-dark{background:#1a1818;color:#c1ff12}
+.hero .button-outline{background:transparent;color:#1a1818;border:1px solid #1a1818}
+.hero .button:hover,.closing .button:hover{transform:translateY(-3px)}
+.newsletter form button{height:50px;padding:0 20px;border-radius:0}
+.newsletter input{height:50px;border-radius:0}
+.closing .button-dark{width:225px;height:50px;min-height:50px;border-radius:0}
+@media(max-width:900px){.hero h1{font-size:clamp(56px,9vw,82px)!important}}
+@media(max-width:640px){.hero h1{font-size:clamp(51px,11vw,75px)!important;margin:28px 0}.hero .button-row{flex-wrap:wrap}}
