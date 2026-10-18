@@ -1,3 +1,5 @@
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 
 const products = [
