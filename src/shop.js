@@ -60,10 +60,10 @@ document.querySelector('#app').innerHTML = `
 function productCard(product) {
   const hasPhoto = !initialFormat && product.id <= shopArtNames.length;
   const artName = shopArtNames[product.id - 1];
-  const photoBase = product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}`;
+  const photoBase = product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}${product.id === 9 || product.id === 10 ? '-clean' : ''}`;
   const hasHighRes = product.id <= 8 || product.id === 11 || product.id === 12;
   const photo = hasPhoto ? `<img class="shop-product-image" src="${photoBase}.png" ${hasHighRes ? `srcset="${photoBase}-hires.png 2x"` : ''} alt="${product.artist} — ${product.title}" loading="lazy">` : `<div class="album-art"><span>${product.artist}<small>${product.title}</small></span></div>`;
-  const badge = hasPhoto && (product.id === 9 || product.id === 10) ? '' : product.badge ? `<span class="product-badge ${product.stock ? '' : 'sold'}">${product.badge}</span>` : '';
+  const badge = product.badge ? `<span class="product-badge ${product.stock ? '' : 'sold'}">${product.badge}</span>` : '';
   const saved = state.favorites.includes(product.id);
   return `<article class="shop-product-card"><div class="product-art ${product.art} ${hasPhoto ? 'has-shop-image' : ''}">${photo}${badge}<button class="favorite ${saved ? 'selected' : ''}" data-favorite="${product.id}" aria-label="${saved ? 'Remove from' : 'Add to'} favorites" aria-pressed="${saved}">${hasPhoto ? '<img src="/shop-assets/heart.svg" alt="">' : icon('heart',15)}</button><button class="quick-add" data-add="${product.id}" ${product.stock ? '' : 'disabled'}>${product.stock ? 'Quick Add' : 'Sold Out'} ${product.stock ? icon('plus',15) : ''}</button></div><div class="product-meta"><span>${product.format === 'Audio' ? 'AUDIO EQUIPMENT' : `${product.format.toUpperCase()} · ${product.year}`}</span><strong>${money(product.price)}</strong></div><h3>${product.artist}</h3><p>${product.title}</p>${product.stock ? '' : '<small class="out-of-stock">OUT OF STOCK</small>'}</article>`;
 }
