@@ -14,13 +14,14 @@ const isCassettePage = initialFormat === 'Cassette';
 document.body.classList.toggle('vinyl-page', isVinylPage);
 document.body.classList.toggle('cd-page', isCdPage);
 document.body.classList.toggle('cassette-page', isCassettePage);
-const heroArt = isVinylPage
-  ? `<div class="vinyl-hero-art" role="img" aria-label="Blue sound wave flowing into a vinyl record"><svg class="wave-svg" viewBox="0 0 620 230" preserveAspectRatio="none" aria-hidden="true"><path d="M0 115 C30 115 30 115 60 115 S80 30 110 115 S145 175 175 115 S215 40 245 115 S270 170 300 115 S320 12 345 115 S360 215 385 115 S400 45 425 115 S448 132 470 115 S500 70 530 115 S570 115 620 115"/><path d="M0 113 C75 113 80 112 95 114 S135 155 175 118 S210 85 242 110 S260 132 290 114 S325 55 346 114 S365 160 390 116 S440 98 465 115 S510 75 620 115"/></svg><span class="wave-dot dot-one"></span><span class="wave-dot dot-two"></span><span class="wave-dot dot-three"></span><span class="wave-dot dot-four"></span><div class="wave-record"><span></span></div></div>`
-  : isCdPage
-    ? `<div class="cd-hero-art" role="img" aria-label="Graphic arrangement of compact discs"><div class="cd-blue-one"></div><div class="cd-blue-two"></div><div class="cd-disc cd-disc-one"></div><div class="cd-disc cd-disc-two"></div><div class="cd-disc cd-disc-three"></div><div class="cd-disc cd-disc-four"></div><span class="cd-accent cd-accent-lime"></span><span class="cd-accent cd-accent-orange"></span></div>`
-    : isCassettePage
-      ? `<div class="cassette-hero-art" role="img" aria-label="Cassette tape with electric blue sound waves"><div class="tape-blue-disc"></div><div class="tape-wave tape-wave-one"></div><div class="tape-wave tape-wave-two"></div><div class="tape-ribbon"></div><div class="hero-cassette"><span>SONORA<br>SIDE A</span><i></i><i></i></div><span class="tape-star">✳</span><span class="tape-lime"></span></div>`
-      : `<div class="shop-hero-art" role="img" aria-label="Illustration of vinyl, cassette, CD, headphones and turntable"><div class="collage-blue"></div><div class="collage-lime"></div><div class="collage-orange"></div><div class="collage-record"><span></span></div><div class="collage-cassette"><span>SONORA / SIDE A</span><i></i><i></i></div><div class="collage-cd"></div><div class="collage-headphones"></div><div class="collage-turntable"><span></span></div></div>`;
+const heroKey = isVinylPage ? 'vinyl' : isCdPage ? 'cd' : isCassettePage ? 'cassette' : 'shop';
+const heroAlt = {
+  shop: 'Vinyl record, cassette, CD, headphones and turntable',
+  vinyl: 'Vinyl record and an electric blue sound wave',
+  cd: 'Black and silver compact discs on a blue graphic background',
+  cassette: 'Cassette tape surrounded by flowing ribbon and blue sound waves'
+};
+const heroArt = `<img class="collection-hero-image" src="/illustrations/${heroKey}.png" alt="${heroAlt[heroKey]}" width="1536" height="1024">`;
 const state = {
   formats: new Set(formatNames.includes(initialFormat) ? [initialFormat] : []),
   genres: new Set(),
