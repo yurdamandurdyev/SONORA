@@ -14,3 +14,7 @@
 .cd-page .blackstar .album-art span{visibility:hidden}
 .collection-hero-image{display:block;width:100%;height:auto;max-height:325px;object-fit:contain;object-position:center;mix-blend-mode:multiply}
 @media(max-width:720px){.collection-hero-image{max-height:none;width:100%;margin:8px auto 0}}
+.shop-product-card .favorite{width:32px;height:32px;top:12px;right:12px;padding:0;display:grid;place-items:center;background:#f5f0e8;color:#1a1818;border-radius:50%}
+.shop-product-card .favorite svg{width:15px;height:15px;stroke-width:2;fill:none}
+.shop-product-card .favorite.selected svg{fill:#ff4c22;stroke:#ff4c22}
+.shop-product-card .favorite:focus-visible{outline:2px solid #0b4aff;outline-offset:2px}
