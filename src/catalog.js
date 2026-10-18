@@ -10,5 +10,21 @@ export const products = [
   { id: 9, format: 'Vinyl', genre: 'Art Pop', year: '1985', price: 31, artist: 'Kate Bush', title: 'Hounds of Love', art: 'kate', badge: 'SOLD OUT', stock: false },
   { id: 10, format: 'CD', genre: 'Jazz', year: '1996', price: 14, artist: 'Various Artists', title: 'Strut Presents: This Is Jazz', art: 'jazz', badge: 'NEW', stock: true },
   { id: 11, format: 'Cassette', genre: 'Electronic', year: '2000', price: 19, artist: 'Broadcast', title: 'The Noise Made by People', art: 'broadcast', stock: true },
-  { id: 12, format: 'Audio', genre: 'Equipment', year: 'Equipment', price: 249, artist: 'Audio-Technica', title: 'AT-LP120XUSB Turntable', art: 'audio-technica', stock: true }
+  { id: 12, format: 'Audio', genre: 'Equipment', year: 'Equipment', price: 249, artist: 'Audio-Technica', title: 'AT-LP120XUSB Turntable', art: 'audio-technica', stock: true },
+  { id: 13, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1977', price: 38, artist: 'David Bowie', title: 'Low', art: 'bowie', stock: true },
+  { id: 14, collection: 'vinyl', format: 'Vinyl', genre: 'Electronic', year: '1994', price: 42, artist: 'Portishead', title: 'Dummy', art: 'portishead', stock: true },
+  { id: 15, collection: 'vinyl', format: 'Vinyl', genre: 'Shoegaze', year: '1991', price: 46, artist: 'My Bloody Valentine', title: 'Loveless', art: 'mbv', stock: true },
+  { id: 16, collection: 'vinyl', format: 'Vinyl', genre: 'Post-Punk', year: '1989', price: 44, artist: 'The Cure', title: 'Disintegration', art: 'cure', stock: true },
+  { id: 17, collection: 'vinyl', format: 'Vinyl', genre: 'Post-Punk', year: '1979', price: 36, artist: 'Talking Heads', title: 'Fear of Music', art: 'fear', badge: 'NEW', stock: true },
+  { id: 18, collection: 'vinyl', format: 'Vinyl', genre: 'Electronic', year: '1992', price: 40, artist: 'Aphex Twin', title: 'Selected Ambient Works 85–92', art: 'saw', badge: 'NEW', stock: true },
+  { id: 19, collection: 'vinyl', format: 'Vinyl', genre: 'Dream Pop', year: '1990', price: 39, artist: 'Cocteau Twins', title: 'Heaven or Las Vegas', art: 'heaven-vinyl', badge: 'NEW', stock: true },
+  { id: 20, collection: 'vinyl', format: 'Vinyl', genre: 'Electronic', year: '1996', price: 37, artist: 'Stereolab', title: 'Emperor Tomato Ketchup', art: 'stereolab', badge: 'SOLD OUT', stock: false },
+  { id: 21, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1971', price: 45, artist: 'Can', title: 'Tago Mago', art: 'can', stock: true },
+  { id: 22, collection: 'vinyl', format: 'Vinyl', genre: 'Post-Punk', year: '1979', price: 44, artist: 'Public Image Ltd.', title: 'Metal Box', art: 'pil', stock: true },
+  { id: 23, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1970', price: 36, artist: 'The Velvet Underground', title: 'Loaded', art: 'velvet', stock: true },
+  { id: 24, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1973', price: 38, artist: 'Roxy Music', title: 'For Your Pleasure', art: 'roxy', stock: true },
+  { id: 25, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1982', price: 40, artist: 'Laurie Anderson', title: 'Big Science', art: 'laurie', stock: true },
+  { id: 26, collection: 'vinyl', format: 'Vinyl', genre: 'Art Pop', year: '1995', price: 41, artist: 'PJ Harvey', title: 'To Bring You My Love', art: 'pj', stock: true },
+  { id: 27, collection: 'vinyl', format: 'Vinyl', genre: 'Dream Pop', year: '1988', price: 43, artist: 'Talk Talk', title: 'Spirit of Eden', art: 'talktalk', stock: true },
+  { id: 28, collection: 'vinyl', format: 'Vinyl', genre: 'Shoegaze', year: '1997', price: 45, artist: 'Spiritualized', title: 'Ladies and Gentlemen We Are Floating in Space', art: 'spiritualized', stock: true }
 ];
