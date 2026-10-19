@@ -18,10 +18,10 @@
 .wishlist-image-wrap>a,.wishlist-image-wrap>a img{display:block;width:100%;height:100%}
 .wishlist-image-wrap>a img{object-fit:cover;transition:transform .4s ease}
 .wishlist-card:hover .wishlist-image-wrap>a img{transform:scale(1.035)}
-.wishlist-remove{position:absolute;top:12px;right:12px;z-index:2;border:0;border-radius:50%;width:32px;height:32px;background:#1a1818;display:grid;place-items:center;cursor:pointer;transition:transform .2s ease}
+.wishlist-remove{position:absolute;top:12px;right:12px;z-index:2;border:0;border-radius:50%;width:32px;height:32px;background:#c1ff12;display:grid;place-items:center;cursor:pointer;transition:transform .2s ease}
 .wishlist-remove:hover{transform:scale(1.12)}
 .wishlist-remove:focus-visible{outline:2px solid #0b4aff;outline-offset:3px}
-.wishlist-remove img{display:block;width:13px;height:14px}
+.wishlist-remove img{display:block;width:13px;height:14px;filter:invert(38%) sepia(98%) saturate(2091%) hue-rotate(344deg) brightness(104%)}
 .wishlist-meta{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-top:13px}
 .wishlist-meta span{font-size:11px;font-weight:800;letter-spacing:.03em;white-space:nowrap}
 .wishlist-meta span.vinyl{color:#1a1818}

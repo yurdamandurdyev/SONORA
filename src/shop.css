@@ -33,6 +33,7 @@
 .shop-product-card .product-art.has-shop-image .favorite img{display:block;width:13px;height:14px}
 .shop-product-card .product-art.has-shop-image .favorite.selected{background:#c1ff12!important}
 .shop-product-card .product-art.has-shop-image .favorite.selected img{filter:invert(38%) sepia(98%) saturate(2091%) hue-rotate(344deg) brightness(104%)}
+.shop-product-card .favorite.selected{background:#c1ff12}
 .shop-product-card .product-art.has-shop-image .product-badge{z-index:3;background:#c1ff12;color:#1a1818}
 .shop-product-card .product-art.has-shop-image .product-badge.sold{background:#1a1818;color:#fff}
 .vinyl-page .collection-hero-image{max-height:349px;mix-blend-mode:normal}
