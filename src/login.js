@@ -2,6 +2,7 @@ import '@fontsource-variable/fraunces/full.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 import './login.css';
+import './motion.js';
 
 document.querySelector('#app').innerHTML = `
   <main class="login-layout">

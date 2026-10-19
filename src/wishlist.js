@@ -3,6 +3,7 @@ import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 import './wishlist.css';
 import './cart.css';
+import './motion.js';
 import { products } from './catalog.js';
 import { cartImage, drawerMarkup } from './cartDrawer.js';
 import { enhanceProductCards } from './productCards.js';

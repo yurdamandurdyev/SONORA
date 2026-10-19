@@ -3,6 +3,7 @@ import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 import './discover.css';
 import './cart.css';
+import './motion.js';
 import { products } from './catalog.js';
 import { drawerMarkup } from './cartDrawer.js';
 

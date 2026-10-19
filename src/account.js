@@ -2,6 +2,7 @@ import '@fontsource-variable/fraunces/full.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 import './account.css';
+import './motion.js';
 import { products } from './catalog.js';
 import { cartImage } from './cartDrawer.js';
 
