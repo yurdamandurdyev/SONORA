@@ -129,7 +129,7 @@ document.addEventListener('click', event => {
   const quantity = event.target.closest('[data-qty]'); if (quantity) { const id = Number(quantity.dataset.qty); const item = state.cart.find(entry => entry.id === id); item.qty += Number(quantity.dataset.delta); state.cart = state.cart.filter(entry => entry.qty > 0); persist(); renderDrawer(); return; }
   const remove = event.target.closest('[data-remove]'); if (remove) { state.cart = state.cart.filter(item => item.id !== Number(remove.dataset.remove)); persist(); renderDrawer(); return; }
   if (event.target.closest('#continue-shopping')) closeDrawer();
-  if (event.target.closest('#checkout')) toast('Checkout is coming soon. Your selections are saved in this browser.');
+  if (event.target.closest('#checkout')) location.href = '/checkout.html';
 });
 document.querySelector('#favorites-toggle').addEventListener('click', () => { location.href = '/wishlist.html'; });
 document.querySelector('#cart-toggle').addEventListener('click', () => openDrawer('cart'));

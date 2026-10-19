@@ -84,7 +84,7 @@ document.addEventListener('click', e => {
   const remove = e.target.closest('[data-remove]'); if (remove) { cart = cart.filter(item => item.id !== Number(remove.dataset.remove)); persist(); renderDrawer(); return; }
   const filter = e.target.closest('[data-filter]'); if (filter) { setFilter(filter.dataset.filter); }
   const story = e.target.closest('[data-article]'); if (story) { const a = articles[Number(story.dataset.article)]; document.querySelector('#modal-tag').textContent = a.tag; document.querySelector('#modal-title').textContent = a.title; document.querySelector('#modal-copy').textContent = `${a.excerpt} At SONORA, listening is something you make time for. Every format has its own pace and every record has a story. Browse our collection to find the next one you'll want to keep close.`; document.querySelector('#modal-backdrop').classList.add('open'); document.body.classList.add('no-scroll'); }
-  if (e.target.closest('#checkout')) toast('Checkout is coming soon. Your selections are saved in this browser.');
+  if (e.target.closest('#checkout')) location.href = '/checkout.html';
   if (e.target.closest('#continue-shopping')) closeDrawer();
 });
 document.querySelector('#cart-toggle').addEventListener('click', () => openDrawer('cart'));

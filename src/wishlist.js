@@ -85,10 +85,7 @@ document.querySelector('#drawer').addEventListener('click', event => {
   } else if (remove) cart = cart.filter(entry => entry.id !== Number(remove.dataset.remove));
   else if (event.target.closest('#continue-shopping')) { closeCart(); return; }
   else if (event.target.closest('#checkout')) {
-    const toast = document.querySelector('#cart-toast');
-    toast.textContent = 'Checkout is coming soon. Your selections are saved in this browser.';
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2800);
+    location.href = '/checkout.html';
     return;
   } else return;
   localStorage.setItem('sonora-cart', JSON.stringify(cart));

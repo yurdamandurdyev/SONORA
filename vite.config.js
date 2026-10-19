@@ -11,7 +11,8 @@ export default defineConfig({
         wishlist: resolve(import.meta.dirname, 'wishlist.html'),
         login: resolve(import.meta.dirname, 'login.html'),
         register: resolve(import.meta.dirname, 'register.html'),
-        account: resolve(import.meta.dirname, 'account.html')
+        account: resolve(import.meta.dirname, 'account.html'),
+        checkout: resolve(import.meta.dirname, 'checkout.html')
       }
     }
   }
