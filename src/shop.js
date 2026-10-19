@@ -22,7 +22,7 @@ const heroAlt = {
   cd: 'Black and silver compact discs on a blue graphic background',
   cassette: 'Cassette tape surrounded by flowing ribbon and blue sound waves'
 };
-const heroArt = `<img class="collection-hero-image" src="${heroKey === 'shop' ? '/shop-assets/hero.png' : heroKey === 'vinyl' ? '/vinyl-assets/hero.png' : heroKey === 'cd' ? '/cd-assets/hero.png' : `/illustrations/${heroKey}.png`}" alt="${heroAlt[heroKey]}" width="${heroKey === 'shop' ? 477 : heroKey === 'vinyl' ? 524 : heroKey === 'cd' ? 525 : 1536}" height="${heroKey === 'shop' ? 318 : heroKey === 'vinyl' ? 349 : heroKey === 'cd' ? 350 : 1024}">`;
+const heroArt = `<img class="collection-hero-image" src="${heroKey === 'shop' ? '/shop-assets/hero.png' : heroKey === 'vinyl' ? '/vinyl-assets/hero.png' : heroKey === 'cd' ? '/cd-assets/hero.png' : heroKey === 'cassette' ? '/cassette-assets/hero.png' : `/illustrations/${heroKey}.png`}" alt="${heroAlt[heroKey]}" width="${heroKey === 'shop' ? 477 : heroKey === 'vinyl' ? 524 : heroKey === 'cd' ? 525 : heroKey === 'cassette' ? 517 : 1536}" height="${heroKey === 'shop' ? 318 : heroKey === 'vinyl' ? 349 : heroKey === 'cd' ? 350 : heroKey === 'cassette' ? 344 : 1024}">`;
 const state = {
   formats: new Set(formatNames.includes(initialFormat) ? [initialFormat] : []),
   genres: new Set(),
@@ -60,10 +60,11 @@ document.querySelector('#app').innerHTML = `
 function productCard(product) {
   const hasVinylPhoto = isVinylPage && product.collection === 'vinyl' && product.id >= 13 && product.id <= 28;
   const hasCdPhoto = isCdPage && product.collection === 'cd' && product.id >= 29 && product.id <= 44;
-  const hasPhoto = (!initialFormat && product.id <= shopArtNames.length) || hasVinylPhoto || hasCdPhoto;
+  const hasCassettePhoto = isCassettePage && product.collection === 'cassette' && product.id >= 45 && product.id <= 56;
+  const hasPhoto = (!initialFormat && product.id <= shopArtNames.length) || hasVinylPhoto || hasCdPhoto || hasCassettePhoto;
   const artName = shopArtNames[product.id - 1];
-  const photoBase = hasVinylPhoto ? `/vinyl-assets/product-${product.id}` : hasCdPhoto ? `/cd-assets/product-${product.id}` : product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}${product.id === 9 || product.id === 10 ? '-clean' : ''}`;
-  const hasHighRes = !hasVinylPhoto && !hasCdPhoto && (product.id <= 8 || product.id === 11 || product.id === 12);
+  const photoBase = hasVinylPhoto ? `/vinyl-assets/product-${product.id}` : hasCdPhoto ? `/cd-assets/product-${product.id}` : hasCassettePhoto ? `/cassette-assets/product-${product.id}` : product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}${product.id === 9 || product.id === 10 ? '-clean' : ''}`;
+  const hasHighRes = !hasVinylPhoto && !hasCdPhoto && !hasCassettePhoto && (product.id <= 8 || product.id === 11 || product.id === 12);
   const photo = hasPhoto ? `<img class="shop-product-image" src="${photoBase}.png" ${hasHighRes ? `srcset="${photoBase}-hires.png 2x"` : ''} alt="${product.artist} — ${product.title}" loading="lazy">` : `<div class="album-art"><span>${product.artist}<small>${product.title}</small></span></div>`;
   const badge = product.badge ? `<span class="product-badge ${product.stock ? '' : 'sold'}">${product.badge}</span>` : '';
   const saved = state.favorites.includes(product.id);
