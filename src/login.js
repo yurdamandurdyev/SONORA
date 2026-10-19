@@ -44,5 +44,5 @@ document.querySelector('#login-form').addEventListener('submit', event => {
     localStorage.removeItem('sonora-demo-user');
   }
   const next = new URLSearchParams(location.search).get('next');
-  location.href = next?.startsWith('/') && !next.startsWith('//') ? next : '/wishlist.html';
+  location.href = next?.startsWith('/') && !next.startsWith('//') ? next : '/account.html';
 });

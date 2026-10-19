@@ -29,6 +29,8 @@ document.querySelector('#app').innerHTML = `
   <div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-header"><div class="drawer-heading"><h2 id="drawer-title">YOUR CART</h2><span id="drawer-count"></span></div><button id="drawer-close" type="button" aria-label="Close cart">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="cart-toast" role="status" aria-live="polite"></div>
 `;
 
+document.querySelector('.account-link').href = '/account.html';
+document.querySelector('.account-link').setAttribute('aria-label', 'Your account');
 const productById = new Map(products.map(product => [product.id, product]));
 function imageFor(product) {
   return [1, 2, 4].includes(product.id) ? `/wishlist/product-${product.id}.png` : cartImage(product);

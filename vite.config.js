@@ -10,7 +10,8 @@ export default defineConfig({
         discover: resolve(import.meta.dirname, 'discover.html'),
         wishlist: resolve(import.meta.dirname, 'wishlist.html'),
         login: resolve(import.meta.dirname, 'login.html'),
-        register: resolve(import.meta.dirname, 'register.html')
+        register: resolve(import.meta.dirname, 'register.html'),
+        account: resolve(import.meta.dirname, 'account.html')
       }
     }
   }

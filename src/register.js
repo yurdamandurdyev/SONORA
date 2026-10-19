@@ -47,6 +47,6 @@ document.querySelector('#register-form').addEventListener('submit', event => {
   confirm.setCustomValidity('');
   const email = document.querySelector('#register-email').value.trim();
   sessionStorage.setItem('sonora-demo-user', JSON.stringify({ email, demo: true }));
-  location.href = '/wishlist.html';
+  location.href = '/account.html';
 });
 document.querySelector('#register-confirm').addEventListener('input', event => event.currentTarget.setCustomValidity(''));
