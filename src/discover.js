@@ -2,6 +2,9 @@ import '@fontsource-variable/fraunces/full.css';
 import '@fontsource-variable/instrument-sans/wght.css';
 import './style.css';
 import './discover.css';
+import './cart.css';
+import { products } from './catalog.js';
+import { drawerMarkup } from './cartDrawer.js';
 
 const articles = [
   { id: 'slow-sunday', category: 'LISTENING GUIDES', label: 'LISTENING GUIDE', minutes: 4, title: '5 Records for a Slow Sunday', excerpt: 'When the pace drops and the light goes soft, these five albums know exactly what to do. No drums required.', author: 'Elena Marsh', date: 'Sep 12, 2026', image: 'slow-sunday.png' },
@@ -51,6 +54,56 @@ document.querySelector('#app').innerHTML = `
   <footer><div class="footer-top"><div><a class="brand footer-brand" href="/index.html">SONORA</a><p>A curated music marketplace for curious listeners and dedicated collectors.</p></div><div><h4>Shop</h4><a href="/shop.html">All Products</a><a href="/shop.html?format=Vinyl">Vinyl</a><a href="/shop.html?format=CD">CDs</a><a href="/shop.html?format=Cassette">Cassettes</a><a href="/shop.html?format=Audio">Audio</a></div><div><h4>Discover</h4><a href="/discover.html">Editorial</a><a href="/discover.html#staff-heading">Staff Picks</a><a href="/shop.html">New Arrivals</a></div><div><h4>About</h4><a href="/index.html#about">Our Story</a><a href="mailto:hello@sonora.shop">Contact</a></div></div><div class="footer-bottom"><span>© 2026 SONORA. Play it loud. Keep it close.</span><span>Vinyl / CDs / Cassettes / Audio Equipment</span></div></footer>
   <dialog class="article-dialog" id="article-dialog"><button class="dialog-close" type="button" aria-label="Close article">${icon('close')}</button><img id="dialog-image" alt=""><div class="dialog-copy"><small id="dialog-label"></small><h2 id="dialog-title"></h2><p id="dialog-excerpt"></p><span id="dialog-byline"></span></div></dialog>
 `;
+
+document.querySelector('#app').insertAdjacentHTML('beforeend', `<div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-header"><div class="drawer-heading"><h2 id="drawer-title">YOUR CART</h2><span id="drawer-count"></span></div><button id="drawer-close" type="button" aria-label="Close cart">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="cart-toast" role="status" aria-live="polite"></div>`);
+const money = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+let cart = JSON.parse(localStorage.getItem('sonora-cart') || '[]');
+function renderCart() {
+  const panel = drawerMarkup('cart', products, cart, [], money);
+  document.querySelector('#drawer-title').textContent = panel.title;
+  document.querySelector('#drawer-count').textContent = panel.countLabel;
+  document.querySelector('#drawer-content').innerHTML = panel.content;
+  document.querySelector('#drawer-footer').innerHTML = panel.footer;
+}
+function closeCart() {
+  document.querySelector('#drawer').classList.remove('open');
+  document.querySelector('#drawer').setAttribute('aria-hidden', 'true');
+  document.querySelector('#drawer-backdrop').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+document.querySelector('.header-actions a[aria-label="Open shop"]').addEventListener('click', event => {
+  event.preventDefault();
+  cart = JSON.parse(localStorage.getItem('sonora-cart') || '[]');
+  renderCart();
+  document.querySelector('#drawer').classList.add('open');
+  document.querySelector('#drawer').setAttribute('aria-hidden', 'false');
+  document.querySelector('#drawer-backdrop').classList.add('open');
+  document.body.classList.add('no-scroll');
+  document.querySelector('#drawer-close').focus();
+});
+document.querySelector('.header-actions a[aria-label="Open shop"]').setAttribute('aria-label', 'Open cart');
+document.querySelector('#drawer-close').addEventListener('click', closeCart);
+document.querySelector('#drawer-backdrop').addEventListener('click', closeCart);
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeCart(); });
+document.querySelector('#drawer').addEventListener('click', event => {
+  const quantity = event.target.closest('[data-qty]');
+  const remove = event.target.closest('[data-remove]');
+  if (quantity) {
+    const item = cart.find(entry => entry.id === Number(quantity.dataset.qty));
+    if (item) item.qty += Number(quantity.dataset.delta);
+    cart = cart.filter(entry => entry.qty > 0);
+  } else if (remove) cart = cart.filter(entry => entry.id !== Number(remove.dataset.remove));
+  else if (event.target.closest('#continue-shopping')) { closeCart(); return; }
+  else if (event.target.closest('#checkout')) {
+    const toast = document.querySelector('#cart-toast');
+    toast.textContent = 'Checkout is coming soon. Your selections are saved in this browser.';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2800);
+    return;
+  } else return;
+  localStorage.setItem('sonora-cart', JSON.stringify(cart));
+  renderCart();
+});
 
 let activeCategory = '';
 function renderArticles() {
