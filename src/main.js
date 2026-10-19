@@ -28,6 +28,7 @@ const icon = (name, size = 20) => {
   const paths = {
     bag: '<path d="M4 8h16l-1 13H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
     heart: '<path d="M20.8 8.5c0 4.2-8.8 10.2-8.8 10.2S3.2 12.7 3.2 8.5a4.6 4.6 0 0 1 8.8-1.8 4.6 4.6 0 0 1 8.8 1.8Z"/>',
+    user: '<circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
     arrow: '<path d="M4 12h16m-7-7 7 7-7 7"/>',
     close: '<path d="M5 5l14 14M19 5 5 19"/>',
     menu: '<path d="M3 7h18M3 12h18M3 17h18"/>',
@@ -59,6 +60,7 @@ document.querySelector('#app').innerHTML = `
   <div class="modal-backdrop" id="modal-backdrop"><div class="story-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Close story">${icon('close')}</button><p class="eyebrow" id="modal-tag"></p><h2 id="modal-title"></h2><p id="modal-copy"></p><a class="button button-dark" href="#shop" id="modal-shop">Explore the collection ${icon('arrow',16)}</a></div></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 `;
+document.querySelector('.header-actions .mobile-menu').insertAdjacentHTML('beforebegin', `<a class="text-icon account-link" href="/login.html" aria-label="Sign in">${icon('user')}</a>`);
 
 function renderProducts() {
   document.querySelector('#product-grid').innerHTML = featuredProducts.filter(p => activeFormat === 'All' || p.format === activeFormat).map(p => `<article class="product-card reveal visible"><div class="product-art ${p.art}"><img class="home-product-image" src="/home/raw-product-${homeProductImages[p.id - 1]}.png" srcset="/home/raw-product-${homeProductImages[p.id - 1]}-hires.png 2x" alt="${p.artist} — ${p.title}" loading="lazy">${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}<button class="favorite ${favorites.includes(p.id) ? 'selected' : ''}" data-favorite="${p.id}" aria-label="${favorites.includes(p.id) ? 'Remove from' : 'Add to'} favorites" aria-pressed="${favorites.includes(p.id)}"><img src="/shop-assets/heart.svg" alt=""></button><button class="quick-add" data-add="${p.id}">Quick Add ${icon('plus',16)}</button></div><div class="product-meta"><span>${p.format} · ${p.year}</span><strong>${money(p.price)}</strong></div><h3>${p.artist}</h3><p>${p.title}</p></article>`).join('');

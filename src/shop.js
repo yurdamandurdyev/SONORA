@@ -42,6 +42,7 @@ const money = value => new Intl.NumberFormat('en-US', { style: 'currency', curre
 const icons = {
   heart: '<path d="M20.8 8.5c0 4.2-8.8 10.2-8.8 10.2S3.2 12.7 3.2 8.5a4.6 4.6 0 0 1 8.8-1.8 4.6 4.6 0 0 1 8.8 1.8Z"/>',
   bag: '<path d="M4 8h16l-1 13H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
+  user: '<circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
   search: '<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
   close: '<path d="M5 5l14 14M19 5 5 19"/>',
   menu: '<path d="M3 7h18M3 12h18M3 17h18"/>',
@@ -61,6 +62,7 @@ document.querySelector('#app').innerHTML = `
   <footer><div class="footer-top"><div><a class="brand footer-brand" href="/index.html">SONORA</a><p>A curated music marketplace for curious listeners and dedicated collectors.</p></div><div><h4>Shop</h4><a href="/shop.html">All Products</a><a href="/shop.html?format=Vinyl">Vinyl</a><a href="/shop.html?format=CD">CDs</a><a href="/shop.html?format=Cassette">Cassettes</a><a href="/shop.html?format=Audio">Audio</a></div><div><h4>Discover</h4><a href="/index.html#discover">Editorial</a><a href="/index.html#discover">Staff Picks</a><a href="/shop.html">New Arrivals</a><a href="/index.html#formats">Genre Guides</a></div><div><h4>About</h4><a href="/index.html#about">Our Story</a><a href="/index.html#formats">Curation</a><a href="mailto:hello@sonora.shop">Contact</a><a href="/index.html#discover">Press</a></div></div><div class="footer-bottom"><span>© 2026 SONORA. Play it loud. Keep it close.</span><span>Vinyl / CDs / Cassettes / Audio Equipment</span></div></footer>
   <div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping panel" aria-hidden="true"><div class="drawer-header"><div class="drawer-heading"><h2 id="drawer-title">YOUR CART</h2><span id="drawer-count"></span></div><button id="drawer-close" aria-label="Close panel">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="toast" role="status" aria-live="polite"></div>
 `;
+document.querySelector('.header-actions .mobile-menu').insertAdjacentHTML('beforebegin', `<a class="text-icon account-link" href="/login.html" aria-label="Sign in">${icon('user')}</a>`);
 if (isAudioPage) document.querySelector('.desktop-nav a[href="/shop.html?format=Audio"]').setAttribute('aria-current', 'page');
 document.querySelectorAll('a[href="/index.html#discover"]').forEach(link => { link.href = '/discover.html'; });
 

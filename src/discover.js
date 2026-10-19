@@ -27,6 +27,7 @@ const icon = (name, size = 20) => {
   const paths = {
     heart: '<path d="M20.8 8.5c0 4.2-8.8 10.2-8.8 10.2S3.2 12.7 3.2 8.5a4.6 4.6 0 0 1 8.8-1.8 4.6 4.6 0 0 1 8.8 1.8Z"/>',
     bag: '<path d="M4 8h16l-1 13H5L4 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/>',
+    user: '<circle cx="12" cy="8" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
     menu: '<path d="M3 7h18M3 12h18M3 17h18"/>',
     close: '<path d="M5 5l14 14M19 5 5 19"/>'
   };
@@ -54,6 +55,7 @@ document.querySelector('#app').innerHTML = `
   <footer><div class="footer-top"><div><a class="brand footer-brand" href="/index.html">SONORA</a><p>A curated music marketplace for curious listeners and dedicated collectors.</p></div><div><h4>Shop</h4><a href="/shop.html">All Products</a><a href="/shop.html?format=Vinyl">Vinyl</a><a href="/shop.html?format=CD">CDs</a><a href="/shop.html?format=Cassette">Cassettes</a><a href="/shop.html?format=Audio">Audio</a></div><div><h4>Discover</h4><a href="/discover.html">Editorial</a><a href="/discover.html#staff-heading">Staff Picks</a><a href="/shop.html">New Arrivals</a></div><div><h4>About</h4><a href="/index.html#about">Our Story</a><a href="mailto:hello@sonora.shop">Contact</a></div></div><div class="footer-bottom"><span>© 2026 SONORA. Play it loud. Keep it close.</span><span>Vinyl / CDs / Cassettes / Audio Equipment</span></div></footer>
   <dialog class="article-dialog" id="article-dialog"><button class="dialog-close" type="button" aria-label="Close article">${icon('close')}</button><img id="dialog-image" alt=""><div class="dialog-copy"><small id="dialog-label"></small><h2 id="dialog-title"></h2><p id="dialog-excerpt"></p><span id="dialog-byline"></span></div></dialog>
 `;
+document.querySelector('.header-actions .mobile-menu').insertAdjacentHTML('beforebegin', `<a class="text-icon account-link" href="/login.html" aria-label="Sign in">${icon('user')}</a>`);
 
 document.querySelector('#app').insertAdjacentHTML('beforeend', `<div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-header"><div class="drawer-heading"><h2 id="drawer-title">YOUR CART</h2><span id="drawer-count"></span></div><button id="drawer-close" type="button" aria-label="Close cart">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="cart-toast" role="status" aria-live="polite"></div>`);
 const money = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
