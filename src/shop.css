@@ -38,4 +38,6 @@
 .vinyl-page .collection-hero-image{max-height:349px;mix-blend-mode:normal}
 .cd-page .collection-hero-image{max-height:350px;mix-blend-mode:normal}
 .cassette-page .collection-hero-image{max-height:344px;mix-blend-mode:normal}
-.audio-page .collection-hero-image{max-height:342px;mix-blend-mode:normal}
+.audio-page .shop-hero{min-height:420px;padding-top:0;padding-bottom:0}
+.audio-page .collection-hero-image{height:418px;max-height:418px;mix-blend-mode:normal}
+@media(max-width:720px){.audio-page .shop-hero{padding-top:40px;padding-bottom:28px}.audio-page .collection-hero-image{height:auto;max-height:none}}
