@@ -60,6 +60,7 @@ document.querySelector('#app').innerHTML = `
   <div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping panel" aria-hidden="true"><div class="drawer-header"><h2 id="drawer-title">Your Bag</h2><button id="drawer-close" aria-label="Close panel">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="toast" role="status" aria-live="polite"></div>
 `;
 if (isAudioPage) document.querySelector('.desktop-nav a[href="/shop.html?format=Audio"]').setAttribute('aria-current', 'page');
+document.querySelectorAll('a[href="/index.html#discover"]').forEach(link => { link.href = '/discover.html'; });
 
 function productCard(product) {
   const hasVinylPhoto = isVinylPage && product.collection === 'vinyl' && product.id >= 13 && product.id <= 28;
