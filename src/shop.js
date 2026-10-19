@@ -11,18 +11,21 @@ const initialFormat = params.get('format');
 const isVinylPage = initialFormat === 'Vinyl';
 const isCdPage = initialFormat === 'CD';
 const isCassettePage = initialFormat === 'Cassette';
+const isAudioPage = initialFormat === 'Audio';
 document.body.classList.toggle('vinyl-page', isVinylPage);
 document.body.classList.toggle('cd-page', isCdPage);
 document.body.classList.toggle('cassette-page', isCassettePage);
-const heroKey = isVinylPage ? 'vinyl' : isCdPage ? 'cd' : isCassettePage ? 'cassette' : 'shop';
+document.body.classList.toggle('audio-page', isAudioPage);
+const heroKey = isVinylPage ? 'vinyl' : isCdPage ? 'cd' : isCassettePage ? 'cassette' : isAudioPage ? 'audio' : 'shop';
 const shopArtNames = ['heads', 'eno', 'tones', 'cocteau', 'aphex', 'technics', 'joy', 'grouper', 'kate', 'jazz', 'broadcast', 'audio-technica'];
 const heroAlt = {
   shop: 'Vinyl record, cassette, CD, headphones and turntable',
   vinyl: 'Vinyl record and an electric blue sound wave',
   cd: 'Black and silver compact discs on a blue graphic background',
-  cassette: 'Cassette tape surrounded by flowing ribbon and blue sound waves'
+  cassette: 'Cassette tape surrounded by flowing ribbon and blue sound waves',
+  audio: 'Turntable, speakers, headphones and other audio equipment'
 };
-const heroArt = `<img class="collection-hero-image" src="${heroKey === 'shop' ? '/shop-assets/hero.png' : heroKey === 'vinyl' ? '/vinyl-assets/hero.png' : heroKey === 'cd' ? '/cd-assets/hero.png' : heroKey === 'cassette' ? '/cassette-assets/hero.png' : `/illustrations/${heroKey}.png`}" alt="${heroAlt[heroKey]}" width="${heroKey === 'shop' ? 477 : heroKey === 'vinyl' ? 524 : heroKey === 'cd' ? 525 : heroKey === 'cassette' ? 517 : 1536}" height="${heroKey === 'shop' ? 318 : heroKey === 'vinyl' ? 349 : heroKey === 'cd' ? 350 : heroKey === 'cassette' ? 344 : 1024}">`;
+const heroArt = `<img class="collection-hero-image" src="${heroKey === 'shop' ? '/shop-assets/hero.png' : `/${heroKey}-assets/hero.png`}" alt="${heroAlt[heroKey]}" width="${{ shop: 477, vinyl: 524, cd: 525, cassette: 517, audio: 444 }[heroKey]}" height="${{ shop: 318, vinyl: 349, cd: 350, cassette: 344, audio: 342 }[heroKey]}">`;
 const state = {
   formats: new Set(formatNames.includes(initialFormat) ? [initialFormat] : []),
   genres: new Set(),
@@ -50,21 +53,23 @@ document.querySelector('#app').innerHTML = `
   <header class="site-header" id="top"><a class="brand" href="/index.html" aria-label="SONORA home">SONORA<span>●</span></a><nav class="desktop-nav" aria-label="Main navigation"><a href="/shop.html" ${!initialFormat ? 'aria-current="page"' : ''}>Shop</a><a href="/shop.html?format=Vinyl" ${isVinylPage ? 'aria-current="page"' : ''}>Vinyl</a><a href="/shop.html?format=CD" ${isCdPage ? 'aria-current="page"' : ''}>CDs</a><a href="/shop.html?format=Cassette" ${isCassettePage ? 'aria-current="page"' : ''}>Cassettes</a><a href="/shop.html?format=Audio">Audio</a><a href="/index.html#discover">Discover</a></nav><div class="header-actions"><button class="text-icon" id="favorites-toggle" aria-label="Show favorites">${icon('heart')}<span class="count" id="favorite-count">0</span></button><button class="text-icon" id="cart-toggle" aria-label="Open cart">${icon('bag')}<span class="count" id="cart-count">0</span></button><button class="text-icon mobile-menu" id="menu-toggle" aria-label="Open menu">${icon('menu')}</button></div></header>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation"><a href="/shop.html">Shop</a><a href="/index.html#formats">Formats</a><a href="/index.html#discover">Discover</a><a href="/index.html#about">About</a></nav>
   <main>
-    <section class="shop-hero"><div class="shop-hero-copy"><p class="eyebrow">${isVinylPage ? 'VINYL' : isCdPage ? 'CD' : isCassettePage ? 'CASSETTE' : 'ALL FORMATS'}</p><h1>${isVinylPage ? 'VINYL' : isCdPage ? 'CD' : isCassettePage ? 'CASSETTE' : 'ALL MUSIC'}<br><em>&amp; AUDIO</em></h1><p>Explore records, tapes, CDs, and equipment selected for curious listeners and dedicated collectors.</p></div>${heroArt}</section>
+    <section class="shop-hero"><div class="shop-hero-copy"><p class="eyebrow">${isVinylPage ? 'VINYL' : isCdPage ? 'CD' : isCassettePage ? 'CASSETTE' : isAudioPage ? 'AUDIO EQUIPMENT' : 'ALL FORMATS'}</p><h1>${isAudioPage ? 'AUDIO' : isVinylPage ? 'VINYL' : isCdPage ? 'CD' : isCassettePage ? 'CASSETTE' : 'ALL MUSIC'}<br><em>${isAudioPage ? '&amp; MORE' : '&amp; AUDIO'}</em></h1><p>Explore records, tapes, CDs, and equipment selected for curious listeners and dedicated collectors.</p></div>${heroArt}</section>
     <div class="shop-layout"><aside class="shop-sidebar" id="shop-sidebar" aria-label="Catalog filters"><div class="mobile-filter-head"><strong>Filters</strong><button id="close-filters" aria-label="Close filters">${icon('close')}</button></div><fieldset><legend>FORMAT</legend>${formatNames.map(format => `<label><input type="checkbox" name="format" value="${format}" ${state.formats.has(format) ? 'checked' : ''}><span>${format === 'Audio' ? 'Audio Equipment' : format}</span></label>`).join('')}</fieldset><fieldset><legend>GENRE</legend>${genreNames.map(genre => `<label><input type="checkbox" name="genre" value="${genre}"><span>${genre}</span></label>`).join('')}</fieldset><fieldset><legend>MAX PRICE</legend><div class="price-value"><span>Up to</span><strong id="price-label">$500</strong></div><input id="price-range" type="range" min="0" max="500" step="10" value="500" aria-label="Maximum price"></fieldset><fieldset><legend>AVAILABILITY</legend><label><input id="in-stock" type="checkbox"><span>In stock only</span></label></fieldset><button class="clear-filters" id="clear-filters">Clear filters</button></aside><div class="shop-content"><div class="shop-toolbar"><button class="open-filters" id="open-filters">Filters</button><label class="shop-search"><span class="shop-search-icon"><img src="/shop-assets/search-circle.svg" alt=""><img src="/shop-assets/search-handle.svg" alt=""></span><input id="shop-search" type="search" placeholder="Search artists, albums..." aria-label="Search artists and albums"></label><div class="shop-count" id="shop-count" aria-live="polite"></div><label class="sr-only" for="shop-sort">Sort products</label><select id="shop-sort"><option value="featured">FEATURED</option><option value="price-asc">PRICE: LOW TO HIGH</option><option value="price-desc">PRICE: HIGH TO LOW</option><option value="artist">ARTIST A–Z</option><option value="newest">NEWEST</option></select></div><div class="shop-products" id="shop-products"></div><p class="no-results" id="no-results" hidden>No products match these filters. Try another search or clear your filters.</p></div></div>
   </main>
   <footer><div class="footer-top"><div><a class="brand footer-brand" href="/index.html">SONORA</a><p>A curated music marketplace for curious listeners and dedicated collectors.</p></div><div><h4>Shop</h4><a href="/shop.html">All Products</a><a href="/shop.html?format=Vinyl">Vinyl</a><a href="/shop.html?format=CD">CDs</a><a href="/shop.html?format=Cassette">Cassettes</a><a href="/shop.html?format=Audio">Audio</a></div><div><h4>Discover</h4><a href="/index.html#discover">Editorial</a><a href="/index.html#discover">Staff Picks</a><a href="/shop.html">New Arrivals</a><a href="/index.html#formats">Genre Guides</a></div><div><h4>About</h4><a href="/index.html#about">Our Story</a><a href="/index.html#formats">Curation</a><a href="mailto:hello@sonora.shop">Contact</a><a href="/index.html#discover">Press</a></div></div><div class="footer-bottom"><span>© 2026 SONORA. Play it loud. Keep it close.</span><span>Vinyl / CDs / Cassettes / Audio Equipment</span></div></footer>
   <div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping panel" aria-hidden="true"><div class="drawer-header"><h2 id="drawer-title">Your Bag</h2><button id="drawer-close" aria-label="Close panel">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="toast" role="status" aria-live="polite"></div>
 `;
+if (isAudioPage) document.querySelector('.desktop-nav a[href="/shop.html?format=Audio"]').setAttribute('aria-current', 'page');
 
 function productCard(product) {
   const hasVinylPhoto = isVinylPage && product.collection === 'vinyl' && product.id >= 13 && product.id <= 28;
   const hasCdPhoto = isCdPage && product.collection === 'cd' && product.id >= 29 && product.id <= 44;
   const hasCassettePhoto = isCassettePage && product.collection === 'cassette' && product.id >= 45 && product.id <= 56;
-  const hasPhoto = (!initialFormat && product.id <= shopArtNames.length) || hasVinylPhoto || hasCdPhoto || hasCassettePhoto;
+  const hasAudioPhoto = isAudioPage && product.collection === 'audio' && product.id >= 57 && product.id <= 68;
+  const hasPhoto = (!initialFormat && product.id <= shopArtNames.length) || hasVinylPhoto || hasCdPhoto || hasCassettePhoto || hasAudioPhoto;
   const artName = shopArtNames[product.id - 1];
-  const photoBase = hasVinylPhoto ? `/vinyl-assets/product-${product.id}` : hasCdPhoto ? `/cd-assets/product-${product.id}` : hasCassettePhoto ? `/cassette-assets/product-${product.id}` : product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}${product.id === 9 || product.id === 10 ? '-clean' : ''}`;
-  const hasHighRes = !hasVinylPhoto && !hasCdPhoto && !hasCassettePhoto && (product.id <= 8 || product.id === 11 || product.id === 12);
+  const photoBase = hasVinylPhoto ? `/vinyl-assets/product-${product.id}` : hasCdPhoto ? `/cd-assets/product-${product.id}` : hasCassettePhoto ? `/cassette-assets/product-${product.id}` : hasAudioPhoto ? `/audio-assets/product-${product.id}` : product.id <= 6 ? `/home/raw-product-${artName}` : `/shop-assets/${artName}${product.id === 9 || product.id === 10 ? '-clean' : ''}`;
+  const hasHighRes = !hasVinylPhoto && !hasCdPhoto && !hasCassettePhoto && !hasAudioPhoto && (product.id <= 8 || product.id === 11 || product.id === 12);
   const photo = hasPhoto ? `<img class="shop-product-image" src="${photoBase}.png" ${hasHighRes ? `srcset="${photoBase}-hires.png 2x"` : ''} alt="${product.artist} — ${product.title}" loading="lazy">` : `<div class="album-art"><span>${product.artist}<small>${product.title}</small></span></div>`;
   const badge = product.badge ? `<span class="product-badge ${product.stock ? '' : 'sold'}">${product.badge}</span>` : '';
   const saved = state.favorites.includes(product.id);
@@ -72,7 +77,7 @@ function productCard(product) {
 }
 function filteredProducts() {
   const result = products.filter(product => {
-    const isCurrentCollection = initialFormat ? product.collection === { Vinyl: 'vinyl', CD: 'cd', Cassette: 'cassette' }[initialFormat] : state.formats.size > 0 || !product.collection;
+    const isCurrentCollection = initialFormat ? product.collection === { Vinyl: 'vinyl', CD: 'cd', Cassette: 'cassette', Audio: 'audio' }[initialFormat] : state.formats.size > 0 || !product.collection;
     return isCurrentCollection && (!state.formats.size || state.formats.has(product.format)) && (!state.genres.size || state.genres.has(product.genre)) && product.price <= state.maxPrice && (!state.inStock || product.stock) && `${product.artist} ${product.title} ${product.format} ${product.genre}`.toLowerCase().includes(state.search);
   });
   if (state.sort === 'price-asc') result.sort((a,b) => a.price - b.price);

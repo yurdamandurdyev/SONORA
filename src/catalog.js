@@ -54,5 +54,17 @@ export const products = [
   { id: 53, collection: 'cassette', format: 'Cassette', genre: 'Art Pop', year: '1997', price: 29, artist: 'Elliott Smith', title: 'Either/Or', art: 'elliott', badge: 'NEW', stock: true },
   { id: 54, collection: 'cassette', format: 'Cassette', genre: 'Electronic', year: '2001', price: 27, artist: 'Daft Punk', title: 'Discovery', art: 'daft', badge: 'NEW', stock: true },
   { id: 55, collection: 'cassette', format: 'Cassette', genre: 'Art Pop', year: '1995', price: 26, artist: 'Björk', title: 'Post', art: 'bjork-tape', stock: true },
-  { id: 56, collection: 'cassette', format: 'Cassette', genre: 'Electronic', year: '1987', price: 24, artist: 'Depeche Mode', title: 'Music for the Masses', art: 'depeche-tape', badge: 'NEW', stock: true }
+  { id: 56, collection: 'cassette', format: 'Cassette', genre: 'Electronic', year: '1987', price: 24, artist: 'Depeche Mode', title: 'Music for the Masses', art: 'depeche-tape', badge: 'NEW', stock: true },
+  { id: 57, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 399, artist: 'Technics', title: 'Direct Drive Turntable', art: 'audio-turntable', stock: true },
+  { id: 58, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 299, artist: 'Audio-Technica', title: 'Walnut Finish Turntable', art: 'audio-turntable', stock: true },
+  { id: 59, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 349, artist: 'Audio-Technica', title: 'Silver Direct Drive Turntable', art: 'audio-turntable', stock: true },
+  { id: 60, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 249, artist: 'Audio-Technica', title: 'Automatic Turntable', art: 'audio-turntable', stock: true },
+  { id: 61, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 229, artist: 'Audio-Technica', title: 'Black Automatic Turntable', art: 'audio-turntable', stock: true },
+  { id: 62, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 449, artist: 'Pro-Ject', title: 'Minimal Turntable', art: 'audio-turntable', stock: true },
+  { id: 63, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 379, artist: 'Marantz', title: 'Integrated Amplifier', art: 'audio-amp', stock: true },
+  { id: 64, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 329, artist: 'Yamaha', title: 'Silver Integrated Amplifier', art: 'audio-amp', stock: true },
+  { id: 65, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 299, artist: 'NAD', title: 'Stereo Amplifier', art: 'audio-amp', stock: true },
+  { id: 66, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 279, artist: 'Technics', title: 'Compact Disc Player', art: 'audio-player', stock: true },
+  { id: 67, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 349, artist: 'Sony', title: 'Stereo Cassette Deck', art: 'audio-player', stock: true },
+  { id: 68, collection: 'audio', format: 'Audio', genre: 'Audio', year: '2024', price: 399, artist: 'Tascam', title: 'Dual Cassette Deck', art: 'audio-player', stock: true }
 ];
