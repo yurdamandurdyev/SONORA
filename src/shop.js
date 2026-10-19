@@ -7,6 +7,7 @@ import './motion.js';
 import { products } from './catalog.js';
 import { drawerMarkup } from './cartDrawer.js';
 import { enhanceProductCards } from './productCards.js';
+import { enhanceSelect } from './selectMenu.js';
 
 const formatNames = ['Vinyl', 'CD', 'Cassette', 'Audio'];
 const genreNames = ['Post-Punk', 'Ambient', 'Jazz', 'Dream Pop', 'Electronic', 'Art Pop', 'Shoegaze'];
@@ -125,6 +126,7 @@ document.querySelector('#shop-sidebar').addEventListener('change', event => {
 document.querySelector('#price-range').addEventListener('input', event => { state.maxPrice = Number(event.target.value); document.querySelector('#price-label').textContent = `$${state.maxPrice}`; renderProducts(); });
 document.querySelector('#shop-search').addEventListener('input', event => { state.search = event.target.value.trim().toLowerCase(); renderProducts(); });
 document.querySelector('#shop-sort').addEventListener('change', event => { state.sort = event.target.value; renderProducts(); });
+enhanceSelect(document.querySelector('#shop-sort'));
 document.querySelector('#clear-filters').addEventListener('click', () => { state.formats.clear(); state.genres.clear(); state.maxPrice = isAudioPage ? Infinity : 500; state.inStock = false; state.search = ''; document.querySelectorAll('#shop-sidebar input[type="checkbox"]').forEach(input => input.checked = false); document.querySelector('#price-range').value = '500'; document.querySelector('#price-label').textContent = '$500'; document.querySelector('#shop-search').value = ''; history.replaceState(null,'',location.pathname); renderProducts(); });
 document.addEventListener('click', event => {
   const add = event.target.closest('[data-add]'); if (add) { const id = Number(add.dataset.add); const product = products.find(item => item.id === id); if (!product?.stock) return; const item = state.cart.find(entry => entry.id === id); item ? item.qty++ : state.cart.push({id,qty:1}); persist(); toast(`${product.artist} added to bag`); if (document.querySelector('#drawer').classList.contains('open')) renderDrawer(); return; }

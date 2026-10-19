@@ -1,6 +1,8 @@
 @media (prefers-reduced-motion: no-preference) {
-  .motion-enabled .motion-enter:not(.motion-visible):not(.visible) { opacity: 0; transform: translate3d(0, 22px, 0); }
-  .motion-enabled .motion-enter { transition: opacity .65s ease-out, transform .65s cubic-bezier(.2,.7,.2,1); transition-delay: var(--motion-delay,0ms); }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  :target { scroll-margin-top: 76px; }
+  .motion-enabled .motion-enter:not(.motion-visible):not(.visible) { opacity: 0; transform: translate3d(0, 10px, 0); }
+  .motion-enabled .motion-enter { transition: opacity .72s ease-out, transform .72s cubic-bezier(.2,.7,.2,1); transition-delay: var(--motion-delay,0ms); }
   .motion-enabled .motion-enter.motion-visible { opacity: 1; transform: translate3d(0,0,0); }
   .motion-enabled .shop-product-card,
   .motion-enabled .product-card,
@@ -22,6 +24,21 @@
   .motion-enabled .detail-recommend-card:hover img { transform: scale(1.035); }
   .motion-enabled .hero-art { animation: sonora-float 9s ease-in-out infinite; }
   .motion-enabled .shop-hero-art { animation: sonora-float 11s ease-in-out infinite; }
+  .motion-enabled .mobile-nav.open { animation: sonora-menu-in .25s cubic-bezier(.2,.7,.2,1) both; }
+  .motion-enabled .desktop-nav a,
+  .motion-enabled .detail-header nav a,
+  .motion-enabled .account-header nav a,
+  .motion-enabled .checkout-header nav a { transition: color .2s ease, opacity .2s ease; }
+  .motion-enabled .desktop-nav a:hover,
+  .motion-enabled .detail-header nav a:hover,
+  .motion-enabled .account-header nav a:hover,
+  .motion-enabled .checkout-header nav a:hover { color: #1b4fff; }
+  .motion-enabled .detail-large,
+  .motion-enabled .login-art>img,
+  .motion-enabled .register-art>img { transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+  .motion-enabled .detail-gallery:hover .detail-large,
+  .motion-enabled .login-art:hover>img,
+  .motion-enabled .register-art:hover>img { transform: scale(1.018); }
   .motion-enabled .login-art-copy,
   .motion-enabled .register-art-copy { transition-duration: .9s; }
   .motion-enabled .button,
@@ -48,6 +65,7 @@
   .motion-enabled .preference-chip:hover,
   .motion-enabled .category-chip:hover { transform: translateY(-2px); }
   @keyframes sonora-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+  @keyframes sonora-menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 }
 @media (prefers-reduced-motion: reduce) {
   .motion-enter { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
