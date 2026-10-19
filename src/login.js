@@ -7,7 +7,7 @@ document.querySelector('#app').innerHTML = `
   <main class="login-layout">
     <section class="login-left" aria-labelledby="login-title"><div class="login-inner">
       <a class="login-brand" href="/index.html" aria-label="SONORA home">SONORA</a>
-      <div class="login-content"><h1 id="login-title">WELCOME<br><span>BACK.</span></h1><p class="login-switch">Don't have an account? <button type="button" id="mode-toggle">Sign up</button></p>
+      <div class="login-content"><h1 id="login-title">WELCOME<br><span>BACK.</span></h1><p class="login-switch">Don't have an account? <a href="/register.html">Sign up</a></p>
         <div class="social-actions"><button type="button" data-social="Google"><span class="google-mark" aria-hidden="true">G</span>Continue with Google</button><button type="button" data-social="Apple"><img class="apple-mark" src="/login/apple.svg" alt="">Continue with Apple</button></div>
         <div class="login-divider"><span>OR</span></div>
         <form id="login-form"><label for="login-email">EMAIL ADDRESS</label><input id="login-email" name="email" type="email" autocomplete="email" placeholder="hello@example.com" required><label for="login-password">PASSWORD</label><div class="password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required><button type="button" id="show-password" aria-pressed="false">SHOW</button></div><div class="login-options"><label class="remember"><input id="remember-me" type="checkbox"><span>Remember me</span></label><button type="button" id="forgot-password">Forgot password?</button></div><button class="login-submit" type="submit" id="login-submit">SIGN IN →</button></form>
@@ -18,17 +18,7 @@ document.querySelector('#app').innerHTML = `
   </main>
 `;
 
-let signupMode = false;
 const message = document.querySelector('#login-message');
-document.querySelector('#mode-toggle').addEventListener('click', () => {
-  signupMode = !signupMode;
-  document.querySelector('#login-title').innerHTML = signupMode ? 'JOIN THE<br><span>COLLECTION.</span>' : 'WELCOME<br><span>BACK.</span>';
-  document.querySelector('.login-switch').firstChild.textContent = signupMode ? 'Already have an account? ' : "Don't have an account? ";
-  document.querySelector('#mode-toggle').textContent = signupMode ? 'Sign in' : 'Sign up';
-  document.querySelector('#login-submit').textContent = signupMode ? 'SIGN UP →' : 'SIGN IN →';
-  document.querySelector('#login-password').autocomplete = signupMode ? 'new-password' : 'current-password';
-  message.textContent = '';
-});
 document.querySelector('#show-password').addEventListener('click', event => {
   const input = document.querySelector('#login-password');
   const visible = input.type === 'password';

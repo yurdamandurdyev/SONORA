@@ -9,7 +9,8 @@ export default defineConfig({
         shop: resolve(import.meta.dirname, 'shop.html'),
         discover: resolve(import.meta.dirname, 'discover.html'),
         wishlist: resolve(import.meta.dirname, 'wishlist.html'),
-        login: resolve(import.meta.dirname, 'login.html')
+        login: resolve(import.meta.dirname, 'login.html'),
+        register: resolve(import.meta.dirname, 'register.html')
       }
     }
   }

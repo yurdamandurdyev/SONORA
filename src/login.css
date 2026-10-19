@@ -7,7 +7,7 @@
 .login-content h1{font-family:'Fraunces Variable',Georgia,serif;font-weight:900;font-size:46px;line-height:.94;letter-spacing:-.055em;margin:0 0 9px;font-variation-settings:'SOFT' 0,'WONK' 1}
 .login-content h1 span{color:#0b4aff}
 .login-switch{color:#8a857f;font-size:14px;margin:0 0 32px}
-.login-switch button,.login-options>button{color:#1a1818;font-size:14px;font-weight:700;border:0;border-bottom:1px solid #1a1818;background:none;padding:0;cursor:pointer}
+.login-switch button,.login-switch a,.login-options>button{color:#1a1818;font-size:14px;font-weight:700;border:0;border-bottom:1px solid #1a1818;background:none;padding:0;cursor:pointer}
 .social-actions{display:grid;gap:12px}
 .social-actions button{height:50px;width:100%;display:flex;justify-content:center;align-items:center;gap:13px;border:1px solid #1a18182b;background:transparent;color:#1a1818;font-size:14px;font-weight:700;transition:border-color .2s,background .2s}
 .social-actions button:hover{border-color:#1a1818;background:#fff9}

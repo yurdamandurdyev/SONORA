@@ -1,0 +1,28 @@
+.register-layout{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);min-height:100svh;max-width:1440px;margin:auto}
+.register-art{position:relative;min-height:1050px;overflow:hidden;background:#104fff}
+.register-art>img{position:absolute;width:100%;height:100%;object-fit:cover}
+.register-art:after{content:'';position:absolute;inset:35% 0 0;background:linear-gradient(0deg,#1b4fff 0%,rgba(22,63,204,.25) 49.52%,transparent 100%)}
+.register-art-copy{position:absolute;z-index:1;left:64px;right:55px;bottom:63px;color:#fff}
+.register-art-copy h2{font:900 46px/.92 'Fraunces Variable',Georgia,serif;letter-spacing:-.055em;margin:0 0 26px;font-variation-settings:'SOFT' 0,'WONK' 1}
+.register-art-copy h2 span{color:#c1ff12}
+.register-art-copy p{font-size:16px;line-height:1.75;margin:0}
+.register-panel{min-width:0;display:flex;justify-content:center}
+.register-inner{width:min(417px,calc(100% - 60px));padding:67px 0 40px}
+.register-content{margin-top:54px}
+.register-content h1{font:900 43px/.96 'Fraunces Variable',Georgia,serif;letter-spacing:-.055em;margin:0 0 16px;font-variation-settings:'SOFT' 0,'WONK' 1}
+.register-content .login-switch{margin-bottom:32px}
+.register-content .login-divider{margin:24px 0 22px}
+#register-form>label:not(.register-terms){display:block;color:#6f6963;font-size:12px;letter-spacing:.055em;font-weight:800;margin-bottom:7px}
+#register-form>input,.register-content .password-wrap{width:100%;height:46px;border:1px solid #1a18182b;background:transparent;border-radius:0;color:#1a1818}
+#register-form>input{padding:0 16px;margin-bottom:16px}
+#register-form input::placeholder{color:#aaa39c}
+#register-form input:focus-visible,.register-content .password-wrap:focus-within{outline:2px solid #0b4aff;outline-offset:1px}
+.register-content .password-wrap{margin-bottom:16px}
+.register-content .password-wrap input{min-width:0;flex:1;border:0;outline:0;background:transparent;height:100%;padding:0 16px}
+.register-terms{display:flex;gap:12px;align-items:flex-start;color:#77716a;font-size:13px;line-height:1.5;margin:3px 0 24px;cursor:pointer}
+.register-terms input{appearance:none;flex:none;width:16px;height:16px;border:1px solid #1a18182b;background:transparent;margin:2px 0 0}
+.register-terms input:checked{background:#0b4aff;border-color:#0b4aff}
+.register-terms input:checked:after{content:'✓';display:block;color:#fff;font-size:12px;line-height:14px;text-align:center}
+.register-terms button{border:0;border-bottom:1px solid #1a1818;padding:0;background:transparent;font-family:inherit;font-size:inherit;font-weight:700;color:#1a1818;cursor:pointer}
+@media(max-width:800px){.register-layout{grid-template-columns:1fr}.register-art{order:2;min-height:380px}.register-panel{order:1}.register-inner{padding:42px 0 50px}.register-content{margin-top:42px}.register-art-copy{left:30px;bottom:30px}.register-art-copy h2{font-size:36px}}
+@media(max-width:420px){.register-content h1{font-size:38px}.register-art-copy p{font-size:13px}}
