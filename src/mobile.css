@@ -1,0 +1,55 @@
+@media (max-width: 640px) {
+  .detail-header nav,
+  .account-header nav,
+  .checkout-header nav { gap: 18px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .detail-header nav::-webkit-scrollbar,
+  .account-header nav::-webkit-scrollbar,
+  .checkout-header nav::-webkit-scrollbar { display: none; }
+  .detail-header nav a,
+  .account-header nav a,
+  .checkout-header nav a { display: inline-flex; align-items: center; min-height: 32px; font-size: 12px; }
+  .detail-icons a,
+  .detail-icons button,
+  .account-icons a,
+  .checkout-icons a { min-width: 32px; min-height: 36px; align-items: center; justify-content: center; }
+  .detail-columns { grid-template-columns: minmax(0, 1fr); }
+  .detail-gallery,
+  .detail-info { min-width: 0; }
+  .detail-thumbs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .detail-thumbs::-webkit-scrollbar { display: none; }
+  .detail-thumbs button { flex: 0 0 70px; }
+  .detail-buy > button,
+  .detail-quantity,
+  .checkout-button,
+  .checkout-back,
+  .account-primary,
+  .login-submit { min-height: 48px; }
+  .checkout-layout { grid-template-columns: minmax(0, 1fr); }
+  .checkout-form-column,
+  .checkout-form-column form { min-width: 0; }
+  .checkout-progress { max-width: 100%; }
+  .checkout-progress-step { flex: 0 0 auto; }
+  .account-columns,
+  .account-content { min-width: 0; }
+  .account-side { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .account-side::-webkit-scrollbar { display: none; }
+  .shop-product-card .card-under-actions button,
+  .product-card .card-under-actions button,
+  .wishlist-card .card-under-actions button { min-height: 38px; }
+}
+@media (max-width: 370px) {
+  .detail-buy { gap: 8px; }
+  .detail-quantity button { width: 34px; }
+  .detail-quantity span { min-width: 22px; }
+  .detail-buy > button { font-size: 11px; }
+  .checkout-header nav,
+  .account-header nav,
+  .detail-header nav { gap: 14px; }
+  .checkout-icons,
+  .account-icons,
+  .detail-icons { gap: 5px; }
+  .checkout-icons a,
+  .account-icons a,
+  .detail-icons a,
+  .detail-icons button { min-width: 30px; }
+}

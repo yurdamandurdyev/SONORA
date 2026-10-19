@@ -71,3 +71,4 @@
 .product-card .favorite img{display:block;width:13px;height:14px}
 .product-card .favorite.selected{background:#c1ff12!important}
 .product-card .favorite.selected img{filter:invert(38%) sepia(98%) saturate(2091%) hue-rotate(344deg) brightness(104%)}
+@media(max-width:640px){.hero .hero-art{display:block;flex:0 0 auto;width:100%;height:auto;min-height:0;aspect-ratio:485/731;margin:0}.closing{grid-template-columns:minmax(0,1fr)}.closing h2{font-size:clamp(38px,10vw,58px);overflow-wrap:normal}.closing-aside{min-width:0}}

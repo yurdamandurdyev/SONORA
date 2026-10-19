@@ -1,4 +1,5 @@
 import './motion.css';
+import './mobile.css';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const targets = [

@@ -37,3 +37,5 @@
 .wishlist-empty .button{display:inline-flex}
 @media(max-width:900px){.wishlist-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.wishlist-page .desktop-nav{gap:16px;margin-left:15px}.wishlist-page .desktop-nav a{font-size:10px}}
 @media(max-width:720px){.wishlist-page .site-header{padding-left:22px;padding-right:22px}.wishlist-page .account-link{display:none}.wishlist-main{padding:46px 22px 60px}.wishlist-intro h1{font-size:clamp(56px,11vw,72px)}.wishlist-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px;margin-top:32px}.wishlist-meta span{font-size:9px}.wishlist-meta strong{font-size:13px}.wishlist-card h2{font-size:13px}.wishlist-card>p{font-size:12px}}
+@media(max-width:720px){.wishlist-page .account-link{display:grid}.wishlist-page .header-actions{gap:10px}.wishlist-intro h1{font-size:clamp(41px,10.5vw,64px)}}
+@media(max-width:370px){.wishlist-page .site-header{padding-left:16px;padding-right:16px}.wishlist-page .header-actions>a[aria-label="Search products"]{display:none}.wishlist-main{padding-left:16px;padding-right:16px}}
