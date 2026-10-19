@@ -40,11 +40,36 @@ function init() {
     }
     if (tab === 'settings') body = `<h3 class="account-eyebrow">PROFILE</h3><form id="profile-form"><div class="account-form-row"><label>FIRST NAME<input name="first" value="${escape(profile.first)}" autocomplete="given-name"></label><label>LAST NAME<input name="last" value="${escape(profile.last)}" autocomplete="family-name"></label></div><label>EMAIL ADDRESS<input name="email" type="email" value="${escape(session.email)}" autocomplete="email" required></label><button class="account-primary" type="submit">SAVE CHANGES</button></form><div class="account-divider"></div><h3 class="account-eyebrow">PASSWORD</h3><p class="account-muted">Password changes are unavailable in demo mode. No password is stored by this site.</p><div class="account-divider"></div><h3 class="account-danger">DANGER ZONE</h3><p class="account-muted">Remove this browser's demo profile and sign out. Saved products will remain on this device.</p><button type="button" class="account-delete" id="delete-account">DELETE DEMO PROFILE</button>`;
     document.querySelector('#account-content').innerHTML = `<h2>${title === 'Addresses' ? 'Saved Addresses' : title}</h2>${body}`;
+    if (tab === 'collection') document.querySelectorAll('.account-collection a').forEach((link, index) => {
+      const item = favorites()[index];
+      if (!item) return;
+      link.href = `/product.html?id=${item.id}`;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'account-collection-card';
+      link.replaceWith(wrapper);
+      wrapper.append(link);
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.accountAdd = item.id;
+      button.textContent = item.stock ? 'ADD TO CART →' : 'SOLD OUT';
+      button.disabled = !item.stock;
+      wrapper.append(button);
+    });
     history.replaceState(null, '', `/account.html?tab=${tab}`);
   }
   document.querySelector('.account-side').addEventListener('click', event => { const tab = event.target.closest('[data-tab]'); if (tab) render(tab.dataset.tab); });
   document.querySelector('#account-content').addEventListener('click', event => {
     const target = event.target;
+    const add = target.closest('[data-account-add]');
+    if (add) {
+      const id = Number(add.dataset.accountAdd);
+      const cart = JSON.parse(localStorage.getItem('sonora-cart') || '[]');
+      const item = cart.find(entry => entry.id === id);
+      item ? item.qty++ : cart.push({ id, qty: 1 });
+      localStorage.setItem('sonora-cart', JSON.stringify(cart));
+      notice('Added to your bag.');
+      return;
+    }
     const go = target.closest('[data-go]'); if (go) { render(go.dataset.go); return; }
     const chip = target.closest('[data-pref]'); if (chip) { const list = profile[chip.dataset.pref]; const index = list.indexOf(chip.dataset.value); if (index < 0) list.push(chip.dataset.value); else list.splice(index,1); persist(); render('preferences'); return; }
     const toggle = target.closest('[data-notification]'); if (toggle) { profile.notifications[toggle.dataset.notification] = !profile.notifications[toggle.dataset.notification]; persist(); render('preferences'); notice('Preference saved in this browser. Email notifications are not connected.'); return; }

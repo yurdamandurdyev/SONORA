@@ -5,6 +5,7 @@ import './shop.css';
 import './cart.css';
 import { products } from './catalog.js';
 import { drawerMarkup } from './cartDrawer.js';
+import { enhanceProductCards } from './productCards.js';
 
 const formatNames = ['Vinyl', 'CD', 'Cassette', 'Audio'];
 const genreNames = ['Post-Punk', 'Ambient', 'Jazz', 'Dream Pop', 'Electronic', 'Art Pop', 'Shoegaze'];
@@ -94,6 +95,7 @@ function filteredProducts() {
 function renderProducts() {
   const result = filteredProducts();
   document.querySelector('#shop-products').innerHTML = result.map(productCard).join('');
+  enhanceProductCards(document.querySelector('#shop-products'));
   document.querySelector('#shop-count').textContent = `${result.length} ${result.length === 1 ? 'item' : 'items'}`;
   document.querySelector('#no-results').hidden = result.length !== 0;
 }

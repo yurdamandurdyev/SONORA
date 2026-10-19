@@ -5,6 +5,7 @@ import './wishlist.css';
 import './cart.css';
 import { products } from './catalog.js';
 import { cartImage, drawerMarkup } from './cartDrawer.js';
+import { enhanceProductCards } from './productCards.js';
 
 let favorites = JSON.parse(localStorage.getItem('sonora-favorites') || '[]');
 let cart = JSON.parse(localStorage.getItem('sonora-cart') || '[]');
@@ -42,6 +43,7 @@ function renderWishlist() {
   document.querySelector('#cart-count').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
   document.querySelector('#wishlist-empty').hidden = saved.length !== 0;
   document.querySelector('#wishlist-grid').innerHTML = saved.map(product => `<article class="wishlist-card"><div class="wishlist-image-wrap"><a href="/shop.html?format=${encodeURIComponent(product.format)}" aria-label="Browse ${product.format}"><img src="${imageFor(product)}" alt="${product.artist} — ${product.title}" width="248" height="248" loading="lazy"></a><button type="button" class="wishlist-remove" data-unfavorite="${product.id}" aria-label="Remove ${product.artist} — ${product.title} from favorites" aria-pressed="true"><img src="/shop-assets/heart.svg" alt=""></button></div><div class="wishlist-meta"><span class="${product.format.toLowerCase()}">${product.format === 'Audio' ? 'AUDIO EQUIPMENT' : `${product.format.toUpperCase()} · ${product.year}`}</span><strong>${money(product.price)}</strong></div><p>${product.artist}</p><h2>${product.title}</h2></article>`).join('');
+  enhanceProductCards(document.querySelector('#wishlist-grid'));
 }
 function renderCart() {
   const panel = drawerMarkup('cart', products, cart, favorites, money);
@@ -57,6 +59,18 @@ function closeCart() {
   document.body.classList.remove('no-scroll');
 }
 document.querySelector('#wishlist-grid').addEventListener('click', event => {
+  const add = event.target.closest('[data-add]');
+  if (add) {
+    const id = Number(add.dataset.add);
+    const product = productById.get(id);
+    if (!product?.stock) return;
+    const item = cart.find(entry => entry.id === id);
+    item ? item.qty++ : cart.push({ id, qty: 1 });
+    localStorage.setItem('sonora-cart', JSON.stringify(cart));
+    document.querySelector('#cart-count').textContent = cart.reduce((sum, entry) => sum + entry.qty, 0);
+    document.querySelector('#cart-toggle').click();
+    return;
+  }
   const button = event.target.closest('[data-unfavorite]');
   if (!button) return;
   favorites = favorites.filter(id => id !== Number(button.dataset.unfavorite));

@@ -17,10 +17,10 @@ const articles = [
 
 const categories = ['LISTENING GUIDES', 'FORMAT CULTURE', 'EDITORIAL', 'AUDIO GUIDES', 'STAFF PICKS', 'GENRE GUIDES', 'ARTIST SPOTLIGHTS'];
 const picks = [
-  { image: 'aphex.png', format: 'CASSETTE', artist: 'Aphex Twin', title: 'Selected Ambient Works Volume II', href: '/shop.html?format=Cassette' },
-  { image: 'technics.png', format: 'AUDIO EQUIPMENT', artist: 'Technics', title: 'SL-1200MK7 Direct Drive Turntable', href: '/shop.html?format=Audio' },
-  { image: 'grouper.png', format: 'VINYL', artist: 'Grouper', title: 'Dragging a Dead Deer Up a Hill', href: '/shop.html?format=Vinyl' },
-  { image: 'cocteau.png', format: 'VINYL', artist: 'Cocteau Twins', title: 'Heaven or Las Vegas', href: '/shop.html?format=Vinyl' }
+  { id: 5, image: 'aphex.png', format: 'CASSETTE', artist: 'Aphex Twin', title: 'Selected Ambient Works Volume II' },
+  { id: 6, image: 'technics.png', format: 'AUDIO EQUIPMENT', artist: 'Technics', title: 'SL-1200MK7 Direct Drive Turntable' },
+  { id: 8, image: 'grouper.png', format: 'VINYL', artist: 'Grouper', title: 'Dragging a Dead Deer Up a Hill' },
+  { id: 4, image: 'cocteau.png', format: 'VINYL', artist: 'Cocteau Twins', title: 'Heaven or Las Vegas' }
 ];
 
 const icon = (name, size = 20) => {
@@ -49,7 +49,7 @@ document.querySelector('#app').innerHTML = `
       <div class="category-bar" role="group" aria-label="Filter articles">${categories.map(category => `<button type="button" class="category-chip" data-category="${category}" aria-pressed="false">${category}</button>`).join('')}</div>
       <section class="article-grid" id="article-grid" aria-label="Latest articles"></section>
       <p class="article-empty" id="article-empty" hidden>No articles in this category yet. Explore another topic.</p>
-      <section class="staff-picks" aria-labelledby="staff-heading"><div class="staff-heading"><h2 id="staff-heading">STAFF PICKS<br><span>THIS WEEK.</span></h2><a href="/shop.html">SHOP ALL →</a></div><div class="staff-grid">${picks.map(pick => `<a class="staff-item" href="${pick.href}"><img src="/editorial/${pick.image}" alt="${pick.artist} — ${pick.title}" width="227" height="227" loading="lazy"><small>${pick.format}</small><span>${pick.artist}</span><strong>${pick.title}</strong></a>`).join('')}</div></section>
+      <section class="staff-picks" aria-labelledby="staff-heading"><div class="staff-heading"><h2 id="staff-heading">STAFF PICKS<br><span>THIS WEEK.</span></h2><a href="/shop.html">SHOP ALL →</a></div><div class="staff-grid">${picks.map(pick => `<div class="staff-product"><a class="staff-item" href="/product.html?id=${pick.id}"><img src="/editorial/${pick.image}" alt="${pick.artist} — ${pick.title}" width="227" height="227" loading="lazy"><small>${pick.format}</small><span>${pick.artist}</span><strong>${pick.title}</strong></a><button type="button" data-staff-add="${pick.id}">ADD TO CART →</button></div>`).join('')}</div></section>
     </div>
   </main>
   <footer><div class="footer-top"><div><a class="brand footer-brand" href="/index.html">SONORA</a><p>A curated music marketplace for curious listeners and dedicated collectors.</p></div><div><h4>Shop</h4><a href="/shop.html">All Products</a><a href="/shop.html?format=Vinyl">Vinyl</a><a href="/shop.html?format=CD">CDs</a><a href="/shop.html?format=Cassette">Cassettes</a><a href="/shop.html?format=Audio">Audio</a></div><div><h4>Discover</h4><a href="/discover.html">Editorial</a><a href="/discover.html#staff-heading">Staff Picks</a><a href="/shop.html">New Arrivals</a></div><div><h4>About</h4><a href="/index.html#about">Our Story</a><a href="mailto:hello@sonora.shop">Contact</a></div></div><div class="footer-bottom"><span>© 2026 SONORA. Play it loud. Keep it close.</span><span>Vinyl / CDs / Cassettes / Audio Equipment</span></div></footer>
@@ -60,6 +60,18 @@ document.querySelector('.header-actions .mobile-menu').insertAdjacentHTML('befor
 document.querySelector('#app').insertAdjacentHTML('beforeend', `<div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="drawer" id="drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-header"><div class="drawer-heading"><h2 id="drawer-title">YOUR CART</h2><span id="drawer-count"></span></div><button id="drawer-close" type="button" aria-label="Close cart">${icon('close')}</button></div><div class="drawer-content" id="drawer-content"></div><div class="drawer-footer" id="drawer-footer"></div></aside><div class="toast" id="cart-toast" role="status" aria-live="polite"></div>`);
 const money = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
 let cart = JSON.parse(localStorage.getItem('sonora-cart') || '[]');
+document.querySelector('.staff-grid').addEventListener('click', event => {
+  const button = event.target.closest('[data-staff-add]');
+  if (!button) return;
+  const id = Number(button.dataset.staffAdd);
+  const item = cart.find(entry => entry.id === id);
+  item ? item.qty++ : cart.push({ id, qty: 1 });
+  localStorage.setItem('sonora-cart', JSON.stringify(cart));
+  const toast = document.querySelector('#cart-toast');
+  toast.textContent = 'Added to your bag';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2800);
+});
 function renderCart() {
   const panel = drawerMarkup('cart', products, cart, [], money);
   document.querySelector('#drawer-title').textContent = panel.title;

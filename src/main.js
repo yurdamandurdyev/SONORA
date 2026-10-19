@@ -5,6 +5,7 @@ import './home.css';
 import './cart.css';
 import { products as catalog } from './catalog.js';
 import { drawerMarkup } from './cartDrawer.js';
+import { enhanceProductCards } from './productCards.js';
 
 const products = catalog;
 const featuredProducts = catalog.slice(0, 6);
@@ -64,6 +65,7 @@ document.querySelector('.header-actions .mobile-menu').insertAdjacentHTML('befor
 
 function renderProducts() {
   document.querySelector('#product-grid').innerHTML = featuredProducts.filter(p => activeFormat === 'All' || p.format === activeFormat).map(p => `<article class="product-card reveal visible"><div class="product-art ${p.art}"><img class="home-product-image" src="/home/raw-product-${homeProductImages[p.id - 1]}.png" srcset="/home/raw-product-${homeProductImages[p.id - 1]}-hires.png 2x" alt="${p.artist} — ${p.title}" loading="lazy">${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}<button class="favorite ${favorites.includes(p.id) ? 'selected' : ''}" data-favorite="${p.id}" aria-label="${favorites.includes(p.id) ? 'Remove from' : 'Add to'} favorites" aria-pressed="${favorites.includes(p.id)}"><img src="/shop-assets/heart.svg" alt=""></button><button class="quick-add" data-add="${p.id}">Quick Add ${icon('plus',16)}</button></div><div class="product-meta"><span>${p.format} · ${p.year}</span><strong>${money(p.price)}</strong></div><h3>${p.artist}</h3><p>${p.title}</p></article>`).join('');
+  enhanceProductCards(document.querySelector('#product-grid'));
 }
 function persist() { localStorage.setItem('sonora-cart', JSON.stringify(cart)); localStorage.setItem('sonora-favorites', JSON.stringify(favorites)); document.querySelector('#cart-count').textContent = cart.reduce((n,i) => n+i.qty, 0); document.querySelector('#favorite-count').textContent = favorites.length; }
 function toast(message) { const el = document.querySelector('#toast'); el.textContent = message; el.classList.add('show'); clearTimeout(toast.timer); toast.timer = setTimeout(() => el.classList.remove('show'), 2800); }
