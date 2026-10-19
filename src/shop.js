@@ -129,7 +129,7 @@ document.addEventListener('click', event => {
   if (event.target.closest('#continue-shopping')) closeDrawer();
   if (event.target.closest('#checkout')) toast('Checkout is coming soon. Your selections are saved in this browser.');
 });
-document.querySelector('#favorites-toggle').addEventListener('click', () => openDrawer('favorites'));
+document.querySelector('#favorites-toggle').addEventListener('click', () => { location.href = '/wishlist.html'; });
 document.querySelector('#cart-toggle').addEventListener('click', () => openDrawer('cart'));
 document.querySelector('#drawer-close').addEventListener('click', closeDrawer);
 document.querySelector('#drawer-backdrop').addEventListener('click', closeDrawer);

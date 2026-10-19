@@ -86,7 +86,7 @@ document.addEventListener('click', e => {
   if (e.target.closest('#continue-shopping')) closeDrawer();
 });
 document.querySelector('#cart-toggle').addEventListener('click', () => openDrawer('cart'));
-document.querySelector('#favorites-toggle').addEventListener('click', () => openDrawer('favorites'));
+document.querySelector('#favorites-toggle').addEventListener('click', () => { location.href = '/wishlist.html'; });
 document.querySelector('#drawer-close').addEventListener('click', closeDrawer);
 document.querySelector('#drawer-backdrop').addEventListener('click', closeDrawer);
 document.querySelector('#menu-toggle').addEventListener('click', () => document.querySelector('#mobile-nav').classList.toggle('open'));
